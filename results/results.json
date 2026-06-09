@@ -1,0 +1,176 @@
+{
+  "dataset": "MAGIC Gamma Telescope (UCI/OpenML) \u2014 19,020 samples, 10 features",
+  "n_qubits": 4,
+  "n_layers": 2,
+  "n_epochs": 30,
+  "quantum_samples": 2000,
+  "quantum_variational": {
+    "ZZ + StronglyEnt": {
+      "test_acc": 0.5633,
+      "train_acc": 0.5757,
+      "f1": 0.0,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "Amplitude + BasicEnt": {
+      "test_acc": 0.6617,
+      "train_acc": 0.6607,
+      "f1": 0.55,
+      "precision": 0.58,
+      "recall": 0.53
+    },
+    "Angle + CustomAnsatz": {
+      "test_acc": 0.7667,
+      "train_acc": 0.7564,
+      "f1": 0.68,
+      "precision": 0.71,
+      "recall": 0.66
+    }
+  },
+  "classical": {
+    "SVM (RBF)": {
+      "test_acc": 0.8782,
+      "train_acc": 0.8836,
+      "f1": 0.83,
+      "precision": 0.85,
+      "recall": 0.81
+    },
+    "Random Forest": {
+      "test_acc": 0.881,
+      "train_acc": 1.0,
+      "f1": 0.84,
+      "precision": 0.86,
+      "recall": 0.82
+    },
+    "Neural Network": {
+      "test_acc": 0.8552,
+      "train_acc": 0.9429,
+      "f1": 0.8,
+      "precision": 0.82,
+      "recall": 0.78
+    }
+  },
+  "quantum_kernel": {
+    "QKernel-ZZ": {
+      "accuracy": 0.6733,
+      "f1": 0.0,
+      "auc_roc": 0.4192
+    },
+    "QKernel-Amplitude": {
+      "accuracy": 0.6533,
+      "f1": 0.42,
+      "auc_roc": 0.5112
+    },
+    "QKernel-Angle": {
+      "accuracy": 0.78,
+      "f1": 0.71,
+      "auc_roc": 0.814
+    }
+  },
+  "scalability": {
+    "2": {
+      "accuracy": 0.6667,
+      "n_params": 12
+    },
+    "3": {
+      "accuracy": 0.5714,
+      "n_params": 18
+    },
+    "4": {
+      "accuracy": 0.4905,
+      "n_params": 24
+    },
+    "5": {
+      "accuracy": 0.4905,
+      "n_params": 30
+    }
+  },
+  "circuit_complexity": {
+    "ZZ + StronglyEnt (4q, 2L)": {
+      "gates": 58,
+      "depth": 22,
+      "params": 24
+    },
+    "Amplitude + BasicEnt (4q, 2L)": {
+      "gates": 31,
+      "depth": 8,
+      "params": 8
+    },
+    "Angle + CustomAnsatz (4q, 2L)": {
+      "gates": 48,
+      "depth": 12,
+      "params": 32
+    }
+  },
+  "barren_plateau": {
+    "1": {
+      "mean": 0.4146,
+      "std": 0.1594
+    },
+    "2": {
+      "mean": 0.5422,
+      "std": 0.147
+    },
+    "3": {
+      "mean": 0.948,
+      "std": 0.1544
+    },
+    "4": {
+      "mean": 1.1278,
+      "std": 0.2006
+    },
+    "5": {
+      "mean": 1.2172,
+      "std": 0.1896
+    },
+    "6": {
+      "mean": 1.3907,
+      "std": 0.1387
+    }
+  },
+  "feature_map_fidelity": {
+    "ZZ": {
+      "same_mean": 0.079,
+      "diff_mean": 0.069
+    },
+    "Amplitude": {
+      "same_mean": 0.24,
+      "diff_mean": 0.267
+    },
+    "Angle": {
+      "same_mean": 0.237,
+      "diff_mean": 0.224
+    }
+  },
+  "expressibility_kl": {
+    "ZZ + StronglyEnt": 0.0693,
+    "Amplitude + BasicEnt": 0.0818,
+    "Angle + CustomAnsatz": 0.066
+  },
+  "training_loss_checkpoints": {
+    "ZZ + StronglyEnt": [
+      0.6839,
+      0.6839,
+      0.6828,
+      0.6809,
+      0.6783,
+      0.677
+    ],
+    "Amplitude + BasicEnt": [
+      0.6353,
+      0.6315,
+      0.633,
+      0.6331,
+      0.6322,
+      0.6323
+    ],
+    "Angle + CustomAnsatz": [
+      0.545,
+      0.5411,
+      0.5362,
+      0.5351,
+      0.5347,
+      0.5341
+    ]
+  }
+}
