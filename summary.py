@@ -2,7 +2,7 @@
 import os
 import pandas as pd
 
-from revision import rconfig, utils
+import rconfig, utils
 
 
 def _read_csv(path):

@@ -22,7 +22,7 @@ import pennylane as qml
 from pennylane import numpy as pnp
 import scipy.stats as sps
 
-from revision import rconfig, utils, circuits as rcircuits
+import rconfig, utils, circuits as rcircuits
 
 
 def _build_bp_circuit(n_qubits, ansatz):

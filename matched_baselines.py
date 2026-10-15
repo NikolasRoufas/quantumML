@@ -15,7 +15,7 @@ from sklearn.svm import SVC, SVC as _SVC
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neural_network import MLPClassifier
 
-from revision import rconfig, utils, metrics as rmetrics, circuits as rcircuits
+import rconfig, utils, metrics as rmetrics, circuits as rcircuits
 
 
 # ── Section 10 — classical baselines ────────────────────────────────────────

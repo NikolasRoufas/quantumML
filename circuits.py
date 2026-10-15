@@ -11,7 +11,7 @@ import math
 import numpy as np
 import pennylane as qml
 
-from revision import rconfig
+import rconfig
 
 _devices = {}
 

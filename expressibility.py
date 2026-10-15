@@ -20,7 +20,7 @@ import numpy as np
 import pandas as pd
 import pennylane as qml
 
-from revision import rconfig, utils, circuits as rcircuits
+import rconfig, utils, circuits as rcircuits
 
 
 def _haar_fidelity_pdf(f_vals, n_qubits):

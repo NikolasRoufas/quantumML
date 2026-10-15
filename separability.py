@@ -11,7 +11,7 @@ import numpy as np
 import pandas as pd
 import scipy.stats as sps
 
-from revision import rconfig, utils, circuits as rcircuits
+import rconfig, utils, circuits as rcircuits
 
 
 def run_separability(split, save=True):

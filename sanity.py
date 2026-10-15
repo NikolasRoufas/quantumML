@@ -15,7 +15,7 @@ import json
 import numpy as np
 import pandas as pd
 
-from revision import rconfig, utils
+import rconfig, utils
 
 
 def _check_runs_csv(path, label, n_expected=None, proba_col=None):

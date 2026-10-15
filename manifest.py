@@ -3,7 +3,7 @@ import os
 import time
 import datetime
 
-from revision import rconfig, utils
+import rconfig, utils
 
 
 def write_manifest(save=True):

@@ -9,7 +9,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-from revision import rconfig, utils
+import rconfig, utils
 
 plt.rcParams.update({"figure.dpi": 150, "savefig.dpi": 150, "font.size": 10})
 

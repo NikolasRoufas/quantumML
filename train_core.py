@@ -11,7 +11,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-from revision import utils, circuits as rcircuits, metrics as rmetrics
+import utils, circuits as rcircuits, metrics as rmetrics
 
 
 def train_one_run(feature_map, ansatz, n_qubits, n_layers, seed,

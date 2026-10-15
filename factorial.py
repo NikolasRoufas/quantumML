@@ -8,7 +8,7 @@ import itertools
 import numpy as np
 import pandas as pd
 
-from revision import rconfig, utils, train_core
+import rconfig, utils, train_core
 
 
 # ── module-level worker (must be picklable for multiprocessing) ────────────

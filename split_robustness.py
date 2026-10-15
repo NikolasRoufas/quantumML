@@ -27,7 +27,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
 import config
-from revision import rconfig, utils, train_core, metrics as rmetrics, matched_baselines
+import rconfig, utils, train_core, metrics as rmetrics, matched_baselines
 
 
 def _build_split_for_seed(X, y, split_seed):

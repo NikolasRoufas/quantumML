@@ -17,7 +17,7 @@ import torch
 
 import config
 import quantum_circuits as orig_qc
-from revision import rconfig, circuits, utils
+import rconfig, circuits, utils
 
 
 def _forward_original(name, x_np, w_np):

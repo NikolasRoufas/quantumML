@@ -7,7 +7,7 @@ results with the reduced-data quantum results.
 import os
 import pandas as pd
 
-from revision import rconfig
+import rconfig
 
 
 METRIC_COLS = ["test_accuracy", "precision", "recall", "f1", "roc_auc",

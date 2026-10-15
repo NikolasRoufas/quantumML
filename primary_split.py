@@ -16,7 +16,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 
 import config
-from revision import rconfig, utils
+import rconfig, utils
 
 
 def build_primary_split(X, y, save=True):

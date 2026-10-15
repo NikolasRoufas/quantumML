@@ -20,7 +20,7 @@ import pennylane as qml
 import torch
 import torch.nn.functional as F
 
-from revision import rconfig, utils, circuits as rcircuits, metrics as rmetrics
+import rconfig, utils, circuits as rcircuits, metrics as rmetrics
 
 NOISE_EPOCHS = 10  # reduced from the primary 30 (Section 20 explicitly allows this)
 
@@ -77,7 +77,7 @@ def run_noise(resume=False, save=True):
               "representative configs. Optional noise experiment not executed.")
         return None
 
-    from revision import primary_split
+    import primary_split
     import data_prep
     X, y = data_prep.load_magic()
     split = primary_split.load_primary_split(X, y)

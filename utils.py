@@ -103,7 +103,7 @@ def read_jsonl(jsonl_path):
 
 def record_failure(reason, **context):
     """Append one failure record to results/revision/failed_runs.json (Section 24)."""
-    from revision import rconfig
+    import rconfig
     path = os.path.join(rconfig.RESULTS_DIR, "failed_runs.json")
     existing = load_json(path, default=[])
     existing.append(to_jsonable({"reason": str(reason), "timestamp": time.time(), **context}))

@@ -27,7 +27,7 @@ import argparse
 import time
 import traceback
 
-from revision import rconfig, utils
+import rconfig, utils
 
 STAGE_ORDER = [
     "audit", "validate-circuits", "factorial", "matched-budget", "baselines",
@@ -43,18 +43,18 @@ def _load_data():
 
 
 def stage_audit(args, ctx):
-    from revision import dataset_audit
+    import dataset_audit
     audit, X, y = dataset_audit.run_audit()
     ctx["X"], ctx["y"], ctx["audit"] = X, y, audit
 
 
 def stage_validate_circuits(args, ctx):
-    from revision import validate_circuits
+    import validate_circuits
     validate_circuits.run_validation()
 
 
 def stage_factorial(args, ctx):
-    from revision import primary_split, factorial
+    import primary_split, factorial
     X, y = ctx.get("X"), ctx.get("y")
     if X is None:
         X, y = _load_data()
@@ -64,7 +64,7 @@ def stage_factorial(args, ctx):
 
 
 def stage_matched_budget(args, ctx):
-    from revision import primary_split, matched_budget
+    import primary_split, matched_budget
     X, y = ctx.get("X"), ctx.get("y")
     if X is None:
         X, y = _load_data()
@@ -73,7 +73,7 @@ def stage_matched_budget(args, ctx):
 
 
 def stage_baselines(args, ctx):
-    from revision import primary_split, matched_baselines
+    import primary_split, matched_baselines
     X, y = ctx.get("X"), ctx.get("y")
     if X is None:
         X, y = _load_data()
@@ -83,7 +83,7 @@ def stage_baselines(args, ctx):
 
 
 def stage_separability(args, ctx):
-    from revision import primary_split, separability
+    import primary_split, separability
     X, y = ctx.get("X"), ctx.get("y")
     if X is None:
         X, y = _load_data()
@@ -92,19 +92,19 @@ def stage_separability(args, ctx):
 
 
 def stage_expressibility(args, ctx):
-    from revision import expressibility
+    import expressibility
     expressibility.run_expressibility()
     expressibility.run_association()
 
 
 def stage_barren_plateau(args, ctx):
-    from revision import barren_plateau
+    import barren_plateau
     barren_plateau.run_barren_plateau(resume=args.resume)
     barren_plateau.run_scaling_analysis()
 
 
 def stage_split_robustness(args, ctx):
-    from revision import split_robustness
+    import split_robustness
     X, y = ctx.get("X"), ctx.get("y")
     if X is None:
         X, y = _load_data()
@@ -112,32 +112,32 @@ def stage_split_robustness(args, ctx):
 
 
 def stage_noise(args, ctx):
-    from revision import noise
+    import noise
     noise.run_noise(resume=args.resume)
 
 
 def stage_unified(args, ctx):
-    from revision import unified
+    import unified
     unified.build_unified_comparison()
 
 
 def stage_figures(args, ctx):
-    from revision import figures
+    import figures
     figures.generate_all_figures()
 
 
 def stage_sanity(args, ctx):
-    from revision import sanity
+    import sanity
     sanity.run_sanity_checks()
 
 
 def stage_manifest(args, ctx):
-    from revision import manifest
+    import manifest
     manifest.write_manifest()
 
 
 def stage_summary(args, ctx):
-    from revision import summary
+    import summary
     summary.print_final_summary()
     summary.write_final_results()
 

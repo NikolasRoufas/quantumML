@@ -9,7 +9,7 @@ under that constraint. It does NOT replace the primary factorial.
 import os
 import numpy as np
 
-from revision import rconfig, circuits, factorial, utils
+import rconfig, circuits, factorial, utils
 
 
 def verify_matched_budget_layer_counts():

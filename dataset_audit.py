@@ -9,7 +9,7 @@ import inspect
 import numpy as np
 
 import data_prep
-from revision import rconfig, utils
+import rconfig, utils
 
 
 def run_audit(save=True):
