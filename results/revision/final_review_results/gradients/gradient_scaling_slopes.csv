@@ -1,0 +1,7 @@
+ansatz,axis,slope_point_estimate,r_squared,n_points,evidence_label
+StronglyEnt,qubits,-0.31246998825834726,0.9965009459184491,6,gradient_suppression_with_grid_range
+StronglyEnt,depth,0.01938510597629071,0.18340125547443664,5,no_evidence_of_suppression
+BasicEnt,qubits,-0.3254272541311406,0.9880441386690704,6,gradient_suppression_with_grid_range
+BasicEnt,depth,-0.03544930311927914,0.6691447530139025,5,gradient_suppression_with_grid_range
+CustomAnsatz,qubits,-0.2929582710442474,0.9994489767711852,6,gradient_suppression_with_grid_range
+CustomAnsatz,depth,0.04791551694648885,0.7410855624721685,5,no_evidence_of_suppression

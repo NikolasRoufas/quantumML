@@ -1,6 +1,17 @@
-pennylane>=0.40.0
+# Pins reflect the exact versions the round-2 (reviewer-response) experiments
+# were run and validated against (Python 3.12, see experiment_manifest.json
+# for the full environment record). PennyLane 0.44 prints a deprecation
+# warning for NumPy<2.0 — see README "Known limitations"; numpy is pinned to
+# the tested 1.x version rather than bumped to 2.x untested this late in the
+# revision cycle.
+pennylane==0.44.1
 torch>=2.0.0
 scikit-learn==1.5.2
-numpy>=1.24.0
+numpy==1.26.4
 matplotlib>=3.7.0
 scipy>=1.11.0
+
+# round-2 (reviewer-response) additions
+pandas>=2.0.0
+statsmodels>=0.14.0
+openml>=0.14.0

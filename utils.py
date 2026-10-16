@@ -13,13 +13,21 @@ import numpy as np
 
 def set_all_seeds(seed):
     """Seed every RNG that influences a run: python, numpy, torch, PennyLane's
-    numpy-wrapper RNG (shared with plain numpy)."""
+    numpy-wrapper RNG (shared with plain numpy).
+
+    Deliberately does NOT call torch.cuda.manual_seed_all: nothing in this
+    codebase ever creates a CUDA tensor (all circuit simulation and VQC
+    training runs on CPU), so seeding CUDA's RNG is pure overhead — and on a
+    multi-GPU host running under NVIDIA MPS, calling it from every worker
+    process in a ProcessPoolExecutor pool (dozens of concurrent processes)
+    forces CUDA context creation in each one and reliably exhausts MPS's
+    max-client limit (observed: CUDA_ERROR_MPS_MAX_CLIENTS_REACHED, ~55% of
+    split-robustness VQC runs failing on first execution on mlserver)."""
     random.seed(seed)
     np.random.seed(seed)
     try:
         import torch
         torch.manual_seed(seed)
-        torch.cuda.manual_seed_all(seed)
     except ImportError:
         pass
 
@@ -64,10 +72,15 @@ def load_json(path, default=None):
 # every individual run is flushed to disk immediately (Section 24).
 
 def load_completed_keys(jsonl_path, key_fields):
-    """Return the set of (key_fields...) tuples already present in a JSONL run log."""
-    done = set()
+    """Return the set of (key_fields...) tuples for successfully-completed
+    runs in a JSONL run log. A record with status == "failed" is NOT
+    counted as done — otherwise --resume could never retry a failed run; it
+    would see the failure record and skip that configuration forever. Only
+    the single latest record for a given key matters (a later retry record
+    for the same key, if present, overrides an earlier failure)."""
+    status_by_key = {}
     if not os.path.exists(jsonl_path):
-        return done
+        return set()
     with open(jsonl_path) as f:
         for line in f:
             line = line.strip()
@@ -77,8 +90,9 @@ def load_completed_keys(jsonl_path, key_fields):
                 rec = json.loads(line)
             except json.JSONDecodeError:
                 continue
-            done.add(tuple(rec.get(k) for k in key_fields))
-    return done
+            key = tuple(rec.get(k) for k in key_fields)
+            status_by_key[key] = rec.get("status", "ok")
+    return {k for k, status in status_by_key.items() if status != "failed"}
 
 
 def append_jsonl(jsonl_path, record):

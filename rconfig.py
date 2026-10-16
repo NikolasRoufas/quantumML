@@ -10,8 +10,11 @@ barren-plateau grid, and output paths.
 import os
 import sys
 
-# Make repo root importable (original flat modules: config, data_prep, ...)
-_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Make repo root importable (original flat modules: config, data_prep, ...).
+# rconfig.py lives directly at the repo root (flattened from the original
+# nested revision/ package — see commit db6381a), so _ROOT is this file's
+# own directory, not its parent.
+_ROOT = os.path.dirname(os.path.abspath(__file__))
 if _ROOT not in sys.path:
     sys.path.insert(0, _ROOT)
 
@@ -35,6 +38,14 @@ SPLIT_SEEDS = [42, 123, 456, 789, 2026]
 # ── primary controlled partition (Section 2) ─────────────────────────────────
 PRIMARY_N_TRAIN = 1400
 PRIMARY_N_TEST = 600
+
+# ── round-2 reviewer response: repeated-split robustness (Section 19-R2) ─────
+# Distinct from SPLIT_SEEDS (which index *which partition* is drawn) so that
+# partition identity and model-initialization identity are never conflated,
+# per the reviewer's explicit instruction to keep the two seed families
+# separate. Values chosen to be visually and numerically disjoint from
+# SPLIT_SEEDS / PRIMARY_SEEDS.
+SPLIT_ROBUSTNESS_INIT_SEEDS = [7001, 7002, 7003]
 
 # ── 3x3 factorial design (Section 3) ─────────────────────────────────────────
 FEATURE_MAPS = ["ZZ", "Amplitude", "Angle"]
@@ -102,6 +113,7 @@ DIRS = {
     "barren_plateau": os.path.join(RESULTS_DIR, "barren_plateau"),
     "split_robustness": os.path.join(RESULTS_DIR, "split_robustness"),
     "noise": os.path.join(RESULTS_DIR, "noise"),
+    "final_review": os.path.join(RESULTS_DIR, "final_review_results"),
 }
 
 

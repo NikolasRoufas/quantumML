@@ -1,0 +1,27 @@
+{
+  "all_clear": false,
+  "round2_issues": {
+    "class_mapping_documented_caveat": [
+      "data_prep.load_magic's 'gamma=1' comment does not match the physics-based label check (documented finding, not treated as a blocking error \u2014 see dataset_provenance.json; left unchanged per explicit instruction)"
+    ],
+    "failed_runs": [
+      "240 round-2 failures recorded in failed_runs.json (see that file for details \u2014 not auto-blocking, but must be disclosed)"
+    ],
+    "duplicated_records": [
+      "fixed_subset/all_runs_full.jsonl: 120 duplicate (config,split,init) keys",
+      "varying_subset/all_runs_full.jsonl: 120 duplicate (config,split,init) keys"
+    ]
+  },
+  "legacy_sanity_all_clear": true,
+  "legacy_sanity_issues": {
+    "dataset_audit": [],
+    "primary_split": [],
+    "factorial_all_runs": [],
+    "matched_budget_all_runs": [],
+    "classical_baselines": [],
+    "qkernel": [],
+    "split_robustness": [],
+    "circuit_validation": [],
+    "barren_plateau": []
+  }
+}

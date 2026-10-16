@@ -1,0 +1,965 @@
+{
+  "StronglyEnt": {
+    "per_param_variance_vs_qubits_by_depth": {
+      "1": {
+        "x_values": [
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          8.0
+        ],
+        "n_points": 6,
+        "slope_point_estimate": -0.3617758979243344,
+        "slope_bootstrap_mean": -0.36350957979853127,
+        "slope_ci95_lo": -0.3965716717996534,
+        "slope_ci95_hi": -0.33325042031255914,
+        "r_squared": 0.9842939875076274,
+        "intercept": -0.23229902535759273,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "2": {
+        "x_values": [
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          8.0
+        ],
+        "n_points": 6,
+        "slope_point_estimate": -0.2622525782665416,
+        "slope_bootstrap_mean": -0.26242740774084866,
+        "slope_ci95_lo": -0.2782734563608638,
+        "slope_ci95_hi": -0.24747673028634282,
+        "r_squared": 0.9673345288619676,
+        "intercept": -0.7450076766480549,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "3": {
+        "x_values": [
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          8.0
+        ],
+        "n_points": 6,
+        "slope_point_estimate": -0.3092683528749501,
+        "slope_bootstrap_mean": -0.30951854725155126,
+        "slope_ci95_lo": -0.32036553899780984,
+        "slope_ci95_hi": -0.2987403129926423,
+        "r_squared": 0.9919934362941436,
+        "intercept": -0.4613362855287859,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "4": {
+        "x_values": [
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          8.0
+        ],
+        "n_points": 6,
+        "slope_point_estimate": -0.3351349020469175,
+        "slope_bootstrap_mean": -0.33536077279714677,
+        "slope_ci95_lo": -0.3442725314409346,
+        "slope_ci95_hi": -0.3265270272347965,
+        "r_squared": 0.9953305734927055,
+        "intercept": -0.32833551838472363,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "6": {
+        "x_values": [
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          8.0
+        ],
+        "n_points": 6,
+        "slope_point_estimate": -0.3005445224278483,
+        "slope_bootstrap_mean": -0.3005660325333485,
+        "slope_ci95_lo": -0.305220138185441,
+        "slope_ci95_hi": -0.295503182368327,
+        "r_squared": 0.9959097316241295,
+        "intercept": -0.4152452783524685,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      }
+    },
+    "headline_vs_qubits": {
+      "x_values": [
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0,
+        8.0
+      ],
+      "n_points": 6,
+      "slope_point_estimate": -0.31246998825834726,
+      "slope_bootstrap_mean": -0.31246541508306164,
+      "slope_ci95_lo": -0.31832042950242445,
+      "slope_ci95_hi": -0.3064019924821596,
+      "r_squared": 0.9965009459184491,
+      "intercept": -0.43162664593455813,
+      "n_bootstrap_replicates": 2000,
+      "n_replicates_with_floored_variance": 0,
+      "any_point_floored": false,
+      "evidence_classification": {
+        "label": "gradient_suppression_with_grid_range",
+        "text": "Gradient variance decreases with the tested grid axis, and the bootstrap 95% CI for the slope excludes zero (CI entirely negative) with R^2 > 0.5. This is evidence of FINITE-SIZE gradient suppression over the tested range (<=8 qubits, local PauliZ(0) observable). It is NOT, by itself, sufficient evidence for ASYMPTOTIC barren-plateau scaling (which requires evidence the trend continues/accelerates at much larger qubit counts, beyond what small-scale classical simulation can probe)."
+      }
+    },
+    "per_param_variance_vs_depth_by_qubits": {
+      "2": {
+        "x_values": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          6.0
+        ],
+        "n_points": 5,
+        "slope_point_estimate": 0.024052989068939493,
+        "slope_bootstrap_mean": 0.02391710008797525,
+        "slope_ci95_lo": 0.012756140982809533,
+        "slope_ci95_hi": 0.034751429575018415,
+        "r_squared": 0.2355646729838559,
+        "intercept": -1.1878022329703006,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "3": {
+        "x_values": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          6.0
+        ],
+        "n_points": 5,
+        "slope_point_estimate": 0.008896352778222946,
+        "slope_bootstrap_mean": 0.009015226749754128,
+        "slope_ci95_lo": 0.0006709061128276279,
+        "slope_ci95_hi": 0.017106365504519296,
+        "r_squared": 0.024410765259809893,
+        "intercept": -1.4073825341418944,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "4": {
+        "x_values": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          6.0
+        ],
+        "n_points": 5,
+        "slope_point_estimate": 0.03170195237273761,
+        "slope_bootstrap_mean": 0.03209295441586764,
+        "slope_ci95_lo": 0.01998343825587051,
+        "slope_ci95_hi": 0.04486482105044408,
+        "r_squared": 0.2707692715378145,
+        "intercept": -1.7714126403888866,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "5": {
+        "x_values": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          6.0
+        ],
+        "n_points": 5,
+        "slope_point_estimate": 0.010526801136431356,
+        "slope_bootstrap_mean": 0.010708122917142283,
+        "slope_ci95_lo": -0.0021479322822628897,
+        "slope_ci95_hi": 0.023948495715474524,
+        "r_squared": 0.08270512118444881,
+        "intercept": -1.994770783392474,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "6": {
+        "x_values": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          6.0
+        ],
+        "n_points": 5,
+        "slope_point_estimate": 0.023627784262683662,
+        "slope_bootstrap_mean": 0.024391927435634182,
+        "slope_ci95_lo": 0.006655662773978659,
+        "slope_ci95_hi": 0.04372811289406791,
+        "r_squared": 0.1223964117232307,
+        "intercept": -2.3615464207638563,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "8": {
+        "x_values": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          6.0
+        ],
+        "n_points": 5,
+        "slope_point_estimate": 0.04924460270888204,
+        "slope_bootstrap_mean": 0.05096546899356741,
+        "slope_ci95_lo": 0.021684720274097537,
+        "slope_ci95_hi": 0.08385090078288059,
+        "r_squared": 0.47027124406865295,
+        "intercept": -3.1557824927451255,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      }
+    },
+    "headline_vs_depth": {
+      "x_values": [
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        6.0
+      ],
+      "n_points": 5,
+      "slope_point_estimate": 0.01938510597629071,
+      "slope_bootstrap_mean": 0.01947305828276773,
+      "slope_ci95_lo": 0.01340129566848151,
+      "slope_ci95_hi": 0.025326813910867926,
+      "r_squared": 0.18340125547443664,
+      "intercept": -1.6396065983711743,
+      "n_bootstrap_replicates": 2000,
+      "n_replicates_with_floored_variance": 0,
+      "any_point_floored": false,
+      "evidence_classification": {
+        "label": "no_evidence_of_suppression",
+        "text": "Point estimate is non-negative, or the CI straddles/exceeds zero in the positive direction \u2014 no evidence of gradient-variance suppression over the tested range for this ansatz/axis."
+      }
+    },
+    "sensitivity_parameter_selection_vs_qubits": {
+      "mean_per_param_variance": {
+        "slope_point_estimate": -0.31246998825834726,
+        "r_squared": 0.9965009459184491,
+        "slope_ci95_lo": -0.3192031269057543,
+        "slope_ci95_hi": -0.30611275323320913
+      },
+      "median_per_param_variance": {
+        "slope_point_estimate": -0.3241140609202219,
+        "r_squared": 0.992970327795302,
+        "slope_ci95_lo": -0.33491735138466067,
+        "slope_ci95_hi": -0.3201174917506512
+      },
+      "representative_param_p0_variance": {
+        "slope_point_estimate": -0.042830521516034364,
+        "r_squared": 0.028711440222463816,
+        "slope_ci95_lo": -0.06505648614102681,
+        "slope_ci95_hi": -0.023968747920696646
+      },
+      "pooled_aggregate_variance_legacy": {
+        "slope_point_estimate": -0.31268015882656963,
+        "r_squared": 0.9966359986060233,
+        "slope_ci95_lo": -0.3193677153701637,
+        "slope_ci95_hi": -0.30617322780354883
+      }
+    },
+    "sensitivity_leave_one_qubit_count_out": {
+      "2.0": {
+        "slope_without_this_qubit_count": -0.3225403615012027,
+        "r_squared": 0.9974762904524284
+      },
+      "3.0": {
+        "slope_without_this_qubit_count": -0.31242024504708943,
+        "r_squared": 0.9959190315373844
+      },
+      "4.0": {
+        "slope_without_this_qubit_count": -0.31166457446885976,
+        "r_squared": 0.9966910852547333
+      },
+      "5.0": {
+        "slope_without_this_qubit_count": -0.313115139959026,
+        "r_squared": 0.9972336311325605
+      },
+      "6.0": {
+        "slope_without_this_qubit_count": -0.31522063463595773,
+        "r_squared": 0.9970440672273182
+      },
+      "8.0": {
+        "slope_without_this_qubit_count": -0.29217354345535934,
+        "r_squared": 0.9990748194030254
+      }
+    }
+  },
+  "BasicEnt": {
+    "per_param_variance_vs_qubits_by_depth": {
+      "1": {
+        "x_values": [
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          8.0
+        ],
+        "n_points": 6,
+        "slope_point_estimate": -0.5005373348963084,
+        "slope_bootstrap_mean": -0.5013249263198585,
+        "slope_ci95_lo": -0.522221731703398,
+        "slope_ci95_hi": -0.4819641048555239,
+        "r_squared": 0.9958142974044182,
+        "intercept": 0.4541166240591652,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "2": {
+        "x_values": [
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          8.0
+        ],
+        "n_points": 6,
+        "slope_point_estimate": -0.2891162766376242,
+        "slope_bootstrap_mean": -0.28972688692644466,
+        "slope_ci95_lo": -0.3068807211401631,
+        "slope_ci95_hi": -0.27273474837016104,
+        "r_squared": 0.9671790126318602,
+        "intercept": -0.22079432117161746,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "3": {
+        "x_values": [
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          8.0
+        ],
+        "n_points": 6,
+        "slope_point_estimate": -0.30743733929049627,
+        "slope_bootstrap_mean": -0.30747612713625927,
+        "slope_ci95_lo": -0.32051671555907196,
+        "slope_ci95_hi": -0.2944644565163808,
+        "r_squared": 0.9908351190937329,
+        "intercept": -0.25990995496022884,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "4": {
+        "x_values": [
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          8.0
+        ],
+        "n_points": 6,
+        "slope_point_estimate": -0.3025490576431698,
+        "slope_bootstrap_mean": -0.30245707049089476,
+        "slope_ci95_lo": -0.3114764742258446,
+        "slope_ci95_hi": -0.2939529533299225,
+        "r_squared": 0.9855021967696739,
+        "intercept": -0.23850507674457178,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "6": {
+        "x_values": [
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          8.0
+        ],
+        "n_points": 6,
+        "slope_point_estimate": -0.3033227100331068,
+        "slope_bootstrap_mean": -0.30332301829347436,
+        "slope_ci95_lo": -0.31051712214470545,
+        "slope_ci95_hi": -0.29619652436739546,
+        "r_squared": 0.9867117744743613,
+        "intercept": -0.2479246587454247,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      }
+    },
+    "headline_vs_qubits": {
+      "x_values": [
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0,
+        8.0
+      ],
+      "n_points": 6,
+      "slope_point_estimate": -0.3254272541311406,
+      "slope_bootstrap_mean": -0.32545360073590535,
+      "slope_ci95_lo": -0.3322821568579745,
+      "slope_ci95_hi": -0.3184551848013695,
+      "r_squared": 0.9880441386690704,
+      "intercept": -0.14039047851398778,
+      "n_bootstrap_replicates": 2000,
+      "n_replicates_with_floored_variance": 0,
+      "any_point_floored": false,
+      "evidence_classification": {
+        "label": "gradient_suppression_with_grid_range",
+        "text": "Gradient variance decreases with the tested grid axis, and the bootstrap 95% CI for the slope excludes zero (CI entirely negative) with R^2 > 0.5. This is evidence of FINITE-SIZE gradient suppression over the tested range (<=8 qubits, local PauliZ(0) observable). It is NOT, by itself, sufficient evidence for ASYMPTOTIC barren-plateau scaling (which requires evidence the trend continues/accelerates at much larger qubit counts, beyond what small-scale classical simulation can probe)."
+      }
+    },
+    "per_param_variance_vs_depth_by_qubits": {
+      "2": {
+        "x_values": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          6.0
+        ],
+        "n_points": 5,
+        "slope_point_estimate": -0.06544848210657762,
+        "slope_bootstrap_mean": -0.06511819649147807,
+        "slope_ci95_lo": -0.07792552449319304,
+        "slope_ci95_hi": -0.051497478341719964,
+        "r_squared": 0.771379059164135,
+        "intercept": -0.6111038324482274,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "3": {
+        "x_values": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          6.0
+        ],
+        "n_points": 5,
+        "slope_point_estimate": -0.01879670320840755,
+        "slope_bootstrap_mean": -0.018823553658340833,
+        "slope_ci95_lo": -0.029568918811323966,
+        "slope_ci95_hi": -0.0082787742883636,
+        "r_squared": 0.2914644332665129,
+        "intercept": -0.941496356293337,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "4": {
+        "x_values": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          6.0
+        ],
+        "n_points": 5,
+        "slope_point_estimate": 0.014272739355120892,
+        "slope_bootstrap_mean": 0.014378488366094457,
+        "slope_ci95_lo": 0.004136093978685398,
+        "slope_ci95_hi": 0.024846188050071088,
+        "r_squared": 0.5157139408879124,
+        "intercept": -1.567887179650853,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "5": {
+        "x_values": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          6.0
+        ],
+        "n_points": 5,
+        "slope_point_estimate": 0.04664027940881833,
+        "slope_bootstrap_mean": 0.04693498589872595,
+        "slope_ci95_lo": 0.0351773936120405,
+        "slope_ci95_hi": 0.059990140249873314,
+        "r_squared": 0.228124350526063,
+        "intercept": -1.9797962174811403,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "6": {
+        "x_values": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          6.0
+        ],
+        "n_points": 5,
+        "slope_point_estimate": 0.07511343891093032,
+        "slope_bootstrap_mean": 0.07552576145700919,
+        "slope_ci95_lo": 0.06008772936101531,
+        "slope_ci95_hi": 0.0921102638247592,
+        "r_squared": 0.4421095950087978,
+        "intercept": -2.431155554688526,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "8": {
+        "x_values": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          6.0
+        ],
+        "n_points": 5,
+        "slope_point_estimate": 0.104216663611118,
+        "slope_bootstrap_mean": 0.10515116248103958,
+        "slope_ci95_lo": 0.08343438685597955,
+        "slope_ci95_hi": 0.12902427683548115,
+        "r_squared": 0.23404785102523595,
+        "intercept": -3.1199663432242875,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      }
+    },
+    "headline_vs_depth": {
+      "x_values": [
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        6.0
+      ],
+      "n_points": 5,
+      "slope_point_estimate": -0.03544930311927914,
+      "slope_bootstrap_mean": -0.03537128165973421,
+      "slope_ci95_lo": -0.04301583256914578,
+      "slope_ci95_hi": -0.02760122286598703,
+      "r_squared": 0.6691447530139025,
+      "intercept": -1.1743316013372824,
+      "n_bootstrap_replicates": 2000,
+      "n_replicates_with_floored_variance": 0,
+      "any_point_floored": false,
+      "evidence_classification": {
+        "label": "gradient_suppression_with_grid_range",
+        "text": "Gradient variance decreases with the tested grid axis, and the bootstrap 95% CI for the slope excludes zero (CI entirely negative) with R^2 > 0.5. This is evidence of FINITE-SIZE gradient suppression over the tested range (<=8 qubits, local PauliZ(0) observable). It is NOT, by itself, sufficient evidence for ASYMPTOTIC barren-plateau scaling (which requires evidence the trend continues/accelerates at much larger qubit counts, beyond what small-scale classical simulation can probe)."
+      }
+    },
+    "sensitivity_parameter_selection_vs_qubits": {
+      "mean_per_param_variance": {
+        "slope_point_estimate": -0.3254272541311406,
+        "r_squared": 0.9880441386690704,
+        "slope_ci95_lo": -0.3321583039969035,
+        "slope_ci95_hi": -0.3184384724431619
+      },
+      "median_per_param_variance": {
+        "slope_point_estimate": -0.3406492995044796,
+        "r_squared": 0.9886402999691184,
+        "slope_ci95_lo": -0.3495184331957919,
+        "slope_ci95_hi": -0.3333890744876992
+      },
+      "representative_param_p0_variance": {
+        "slope_point_estimate": -0.36460942132236857,
+        "r_squared": 0.9204547432503872,
+        "slope_ci95_lo": -0.3965178658793866,
+        "slope_ci95_hi": -0.3360941498396974
+      },
+      "pooled_aggregate_variance_legacy": {
+        "slope_point_estimate": -0.32513343576678866,
+        "r_squared": 0.9882438924692792,
+        "slope_ci95_lo": -0.3315515200803826,
+        "slope_ci95_hi": -0.31804030196006916
+      }
+    },
+    "sensitivity_leave_one_qubit_count_out": {
+      "2.0": {
+        "slope_without_this_qubit_count": -0.327313238078074,
+        "r_squared": 0.9815783085796567
+      },
+      "3.0": {
+        "slope_without_this_qubit_count": -0.31351722582757957,
+        "r_squared": 0.9949175611269272
+      },
+      "4.0": {
+        "slope_without_this_qubit_count": -0.32819082760290874,
+        "r_squared": 0.991007863814051
+      },
+      "5.0": {
+        "slope_without_this_qubit_count": -0.32484303788993946,
+        "r_squared": 0.9884862479271097
+      },
+      "6.0": {
+        "slope_without_this_qubit_count": -0.32065501417264725,
+        "r_squared": 0.9888312067235943
+      },
+      "8.0": {
+        "slope_without_this_qubit_count": -0.3516276373727625,
+        "r_squared": 0.9857386037939613
+      }
+    }
+  },
+  "CustomAnsatz": {
+    "per_param_variance_vs_qubits_by_depth": {
+      "1": {
+        "x_values": [
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          8.0
+        ],
+        "n_points": 6,
+        "slope_point_estimate": -0.535574355122659,
+        "slope_bootstrap_mean": -0.5641365188065031,
+        "slope_ci95_lo": -0.6801974780523672,
+        "slope_ci95_hi": -0.4675420439904359,
+        "r_squared": 0.9981528614624375,
+        "intercept": -0.1065647690378988,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "2": {
+        "x_values": [
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          8.0
+        ],
+        "n_points": 6,
+        "slope_point_estimate": -0.26014135333278404,
+        "slope_bootstrap_mean": -0.2606187613719577,
+        "slope_ci95_lo": -0.27688433128659967,
+        "slope_ci95_hi": -0.2449900829693155,
+        "r_squared": 0.9943174279615581,
+        "intercept": -0.6920668853350458,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "3": {
+        "x_values": [
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          8.0
+        ],
+        "n_points": 6,
+        "slope_point_estimate": -0.2853566034037691,
+        "slope_bootstrap_mean": -0.28547302465085855,
+        "slope_ci95_lo": -0.2938170012027656,
+        "slope_ci95_hi": -0.27623926865224296,
+        "r_squared": 0.998024713537241,
+        "intercept": -0.5570528669859358,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "4": {
+        "x_values": [
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          8.0
+        ],
+        "n_points": 6,
+        "slope_point_estimate": -0.282494084110498,
+        "slope_bootstrap_mean": -0.282408733679784,
+        "slope_ci95_lo": -0.28858156721829203,
+        "slope_ci95_hi": -0.2759468920197404,
+        "r_squared": 0.999130451110382,
+        "intercept": -0.5394287541664649,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "6": {
+        "x_values": [
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          8.0
+        ],
+        "n_points": 6,
+        "slope_point_estimate": -0.2908571709788623,
+        "slope_bootstrap_mean": -0.2908211401627153,
+        "slope_ci95_lo": -0.2953674080286396,
+        "slope_ci95_hi": -0.28622944694088354,
+        "r_squared": 0.998832627329624,
+        "intercept": -0.4881340750401939,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      }
+    },
+    "headline_vs_qubits": {
+      "x_values": [
+        2.0,
+        3.0,
+        4.0,
+        5.0,
+        6.0,
+        8.0
+      ],
+      "n_points": 6,
+      "slope_point_estimate": -0.2929582710442474,
+      "slope_bootstrap_mean": -0.2930815524264932,
+      "slope_ci95_lo": -0.2979459485190364,
+      "slope_ci95_hi": -0.2879851662771872,
+      "r_squared": 0.9994489767711852,
+      "intercept": -0.5702165646742965,
+      "n_bootstrap_replicates": 2000,
+      "n_replicates_with_floored_variance": 0,
+      "any_point_floored": false,
+      "evidence_classification": {
+        "label": "gradient_suppression_with_grid_range",
+        "text": "Gradient variance decreases with the tested grid axis, and the bootstrap 95% CI for the slope excludes zero (CI entirely negative) with R^2 > 0.5. This is evidence of FINITE-SIZE gradient suppression over the tested range (<=8 qubits, local PauliZ(0) observable). It is NOT, by itself, sufficient evidence for ASYMPTOTIC barren-plateau scaling (which requires evidence the trend continues/accelerates at much larger qubit counts, beyond what small-scale classical simulation can probe)."
+      }
+    },
+    "per_param_variance_vs_depth_by_qubits": {
+      "2": {
+        "x_values": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          6.0
+        ],
+        "n_points": 5,
+        "slope_point_estimate": 0.026809046381503877,
+        "slope_bootstrap_mean": 0.026791853061606575,
+        "slope_ci95_lo": 0.017567985999753653,
+        "slope_ci95_hi": 0.0366720082361035,
+        "r_squared": 0.7911585768838677,
+        "intercept": -1.2564004210073296,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "3": {
+        "x_values": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          6.0
+        ],
+        "n_points": 5,
+        "slope_point_estimate": 0.0631614747592576,
+        "slope_bootstrap_mean": 0.0635205390628328,
+        "slope_ci95_lo": 0.05121548027551286,
+        "slope_ci95_hi": 0.07643421980318225,
+        "r_squared": 0.5975926114213876,
+        "intercept": -1.6580747687583248,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "4": {
+        "x_values": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          6.0
+        ],
+        "n_points": 5,
+        "slope_point_estimate": 0.080486776593095,
+        "slope_bootstrap_mean": 0.08108906677703692,
+        "slope_ci95_lo": 0.0655576273374596,
+        "slope_ci95_hi": 0.09743207243797934,
+        "r_squared": 0.5009496995289664,
+        "intercept": -2.0178306813733164,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "5": {
+        "x_values": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          6.0
+        ],
+        "n_points": 5,
+        "slope_point_estimate": 0.13959793834022421,
+        "slope_bootstrap_mean": 0.14063179760826297,
+        "slope_ci95_lo": 0.1167667658385747,
+        "slope_ci95_hi": 0.16765179260266344,
+        "r_squared": 0.49507767699799304,
+        "intercept": -2.5786012405942493,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "6": {
+        "x_values": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          6.0
+        ],
+        "n_points": 5,
+        "slope_point_estimate": 0.17028320242261893,
+        "slope_bootstrap_mean": 0.17145309759373578,
+        "slope_ci95_lo": 0.14359490486240592,
+        "slope_ci95_hi": 0.20270794898397723,
+        "r_squared": 0.45544606846975194,
+        "intercept": -3.0222586265330413,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      },
+      "8": {
+        "x_values": [
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          6.0
+        ],
+        "n_points": 5,
+        "slope_point_estimate": 0.22690119144937562,
+        "slope_bootstrap_mean": 0.2549444857420207,
+        "slope_ci95_lo": 0.16018099558015073,
+        "slope_ci95_hi": 0.3778637403355469,
+        "r_squared": 0.38062707382737504,
+        "intercept": -3.854669873151832,
+        "n_bootstrap_replicates": 2000,
+        "n_replicates_with_floored_variance": 0,
+        "any_point_floored": false
+      }
+    },
+    "headline_vs_depth": {
+      "x_values": [
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        6.0
+      ],
+      "n_points": 5,
+      "slope_point_estimate": 0.04791551694648885,
+      "slope_bootstrap_mean": 0.04797180541761899,
+      "slope_ci95_lo": 0.04156064553235,
+      "slope_ci95_hi": 0.05472859738877862,
+      "r_squared": 0.7410855624721685,
+      "intercept": -1.800627704514782,
+      "n_bootstrap_replicates": 2000,
+      "n_replicates_with_floored_variance": 0,
+      "any_point_floored": false,
+      "evidence_classification": {
+        "label": "no_evidence_of_suppression",
+        "text": "Point estimate is non-negative, or the CI straddles/exceeds zero in the positive direction \u2014 no evidence of gradient-variance suppression over the tested range for this ansatz/axis."
+      }
+    },
+    "sensitivity_parameter_selection_vs_qubits": {
+      "mean_per_param_variance": {
+        "slope_point_estimate": -0.2929582710442474,
+        "r_squared": 0.9994489767711852,
+        "slope_ci95_lo": -0.2977208583897891,
+        "slope_ci95_hi": -0.2882374271882092
+      },
+      "median_per_param_variance": {
+        "slope_point_estimate": -0.281691179529339,
+        "r_squared": 0.9982775446954656,
+        "slope_ci95_lo": -0.28935780107104986,
+        "slope_ci95_hi": -0.2786274706552148
+      },
+      "representative_param_p0_variance": {
+        "slope_point_estimate": -0.28530708056420206,
+        "r_squared": 0.9944069033070164,
+        "slope_ci95_lo": -0.30162909150177664,
+        "slope_ci95_hi": -0.26999560229353975
+      },
+      "pooled_aggregate_variance_legacy": {
+        "slope_point_estimate": -0.2929332251554115,
+        "r_squared": 0.9994415544677294,
+        "slope_ci95_lo": -0.29768697496632407,
+        "slope_ci95_hi": -0.28820661978358153
+      }
+    },
+    "sensitivity_leave_one_qubit_count_out": {
+      "2.0": {
+        "slope_without_this_qubit_count": -0.2954233901599319,
+        "r_squared": 0.9993360672997496
+      },
+      "3.0": {
+        "slope_without_this_qubit_count": -0.29169172601160026,
+        "r_squared": 0.9994834290564729
+      },
+      "4.0": {
+        "slope_without_this_qubit_count": -0.29237051271558634,
+        "r_squared": 0.9996104680959267
+      },
+      "5.0": {
+        "slope_without_this_qubit_count": -0.29283013955247633,
+        "r_squared": 0.9994787965334326
+      },
+      "6.0": {
+        "slope_without_this_qubit_count": -0.29146280817363257,
+        "r_squared": 0.9996749969966194
+      },
+      "8.0": {
+        "slope_without_this_qubit_count": -0.296650720154288,
+        "r_squared": 0.9990174911398262
+      }
+    }
+  },
+  "_methodology_note": {
+    "primary_statistic": "mean_of_per_param_variances (V_p = Var_i(g[i,p]) averaged over p) \u2014 see metadata.json for the full definition and rationale.",
+    "secondary_statistic": "pooled aggregate_grad_variance, retained only in the sensitivity_parameter_selection_vs_qubits block for comparison with the original (pre-round-2) analysis.",
+    "bootstrap": "2,000-replicate initialization-level bootstrap (resampling complete per-init gradient vectors with replacement within each cell, recomputing the per-parameter variance statistic per replicate, then refitting the full log10(variance) ~ grid-axis regression) for every headline and fixed-depth/fixed-qubit regression.",
+    "nonpositive_variance_handling": "Before any log10 transform, a variance estimate <= 0 (possible for a bootstrap replicate that happens to resample near-duplicate initializations, though not observed in the point-estimate data) is floored at 1e-300 (far below any physically meaningful gradient variance in this experiment) rather than dropped, so every bootstrap replicate still contributes a finite slope estimate; floored replicates are counted and reported separately."
+  }
+}

@@ -10,7 +10,7 @@ def write_manifest(save=True):
     print("=" * 65)
     print("  SECTION 22 — REVISION MANIFEST")
     print("=" * 65)
-    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    root = os.path.dirname(os.path.abspath(__file__))  # manifest.py lives at the repo root
     versions = utils.get_versions()
     commit = utils.get_git_commit(root)
 

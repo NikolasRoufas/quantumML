@@ -95,12 +95,19 @@ def run_classical(split, resume=False):
 
 # ── Section 11 — quantum-kernel baselines (efficient statevector-Gram) ─────
 
-def run_qkernel(split, resume=False):
+def run_qkernel(split, resume=False, out_dir=None, jsonl_name="qkernel_all_runs.jsonl",
+                 key_fields=("feature_map",), extra_fields=None, label="SECTION 11 — CONTROLLED "
+                 "QUANTUM-KERNEL BASELINES (matched partition)"):
+    """extra_fields: dict merged into every saved record (e.g. {"split_seed": 123}) —
+    lets callers (e.g. the round-2 repeated-split experiment) reuse this exact
+    statevector-Gram implementation against a different partition while keying
+    completed-run tracking on more than just feature_map."""
     print("=" * 65)
-    print("  SECTION 11 — CONTROLLED QUANTUM-KERNEL BASELINES (matched partition)")
+    print(f"  {label}")
     print("=" * 65)
-    out_dir = rconfig.DIRS["matched_baselines"]
-    jsonl_path = os.path.join(out_dir, "qkernel_all_runs.jsonl")
+    out_dir = out_dir or rconfig.DIRS["matched_baselines"]
+    jsonl_path = os.path.join(out_dir, jsonl_name)
+    extra_fields = extra_fields or {}
 
     X_tr, y_tr = split["X_tr_q"], split["y_tr"]
     X_te, y_te = split["X_te_q"], split["y_te"]
@@ -108,11 +115,12 @@ def run_qkernel(split, resume=False):
 
     done = set()
     if resume:
-        done = utils.load_completed_keys(jsonl_path, ["feature_map"])
+        done = utils.load_completed_keys(jsonl_path, list(key_fields))
 
     results = []
     for fmap in rconfig.FEATURE_MAPS:
-        if (fmap,) in done:
+        key = tuple(extra_fields.get(k, fmap if k == "feature_map" else None) for k in key_fields)
+        if key in done:
             print(f"    {fmap}: already done, skipping (--resume)")
             continue
         print(f"    {fmap} kernel: computing statevectors for {n_tr}+{n_te} samples...")
@@ -149,14 +157,19 @@ def run_qkernel(split, resume=False):
                 "recall": m["recall"], "f1": m["f1"], "roc_auc": m["roc_auc"],
                 "pr_auc": m["pr_auc"], "balanced_accuracy": m["balanced_accuracy"],
                 "mcc": m["mcc"], "confusion_matrix": m["confusion_matrix"],
+                "y_true": np.asarray(y_te).tolist(), "y_pred": np.asarray(y_pred).tolist(),
+                "y_proba": np.asarray(y_proba).tolist(),
+                "train_idx": np.asarray(split["train_idx"]).tolist() if "train_idx" in split else None,
+                "test_idx": np.asarray(split["test_idx"]).tolist() if "test_idx" in split else None,
                 "statevector_time_seconds": t_states, "gram_and_svm_time_seconds": t_gram,
                 "total_elapsed_seconds": time.time() - t0,
             }
+            rec.update(extra_fields)
             print(f"      acc={m['accuracy']:.4f} f1={m['f1']:.4f} auc={m['roc_auc']:.4f} "
                   f"(states {t_states:.1f}s, gram+svm {t_gram:.1f}s)")
         except Exception as e:
-            rec = {"feature_map": fmap, "status": "failed", "error": str(e)}
-            utils.record_failure(str(e), stage="qkernel", feature_map=fmap)
+            rec = {"feature_map": fmap, "status": "failed", "error": str(e), **extra_fields}
+            utils.record_failure(str(e), stage="qkernel", feature_map=fmap, **extra_fields)
             print(f"      FAILED: {e}")
 
         utils.append_jsonl(jsonl_path, rec)
@@ -169,7 +182,8 @@ def run_qkernel(split, resume=False):
         df.to_csv(os.path.join(out_dir, "qkernel_results.csv"), index=False)
         metric_cols = ["test_accuracy", "precision", "recall", "f1", "roc_auc", "pr_auc",
                         "balanced_accuracy", "mcc"]
-        df[["feature_map"] + metric_cols].to_csv(
+        id_cols = [c for c in ("feature_map", "split_seed") if c in df.columns]
+        df[id_cols + metric_cols].to_csv(
             os.path.join(out_dir, "qkernel_summary.csv"), index=False)
         print(f"  QK-SVM results saved -> {out_dir}")
     return ok

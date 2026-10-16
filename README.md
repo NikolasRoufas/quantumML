@@ -26,6 +26,14 @@ A full experimental study of variational quantum classifiers (VQC), quantum kern
   - [Qubit Scalability](#qubit-scalability)
   - [Expressibility](#expressibility)
 - [Figures](#figures)
+- [Journal-Revision Experimental Package (Rounds 1 & 2)](#journal-revision-experimental-package-rounds-1--2)
+  - [Dataset Provenance (Round 2)](#dataset-provenance-round-2)
+  - [Repeated-Split Robustness (Round 2)](#repeated-split-robustness-round-2)
+  - [Corrected Gradient-Scaling Methodology (Round 2)](#corrected-gradient-scaling-methodology-round-2)
+  - [Reproducing the Revision Experiments](#reproducing-the-revision-experiments)
+  - [Where Results Are Stored](#where-results-are-stored)
+  - [Computational Requirements](#computational-requirements)
+  - [Known Scientific Limitations](#known-scientific-limitations)
 - [Citation](#citation)
 
 ---
@@ -46,8 +54,15 @@ Beyond accuracy, the study analyses **barren plateaus**, **circuit expressibilit
 
 ## Dataset
 
-**MAGIC Gamma Telescope** — UCI Machine Learning Repository (OpenML ID 566)  
+**MAGIC Gamma Telescope** — UCI Machine Learning Repository  
 Source: https://archive.ics.uci.edu/dataset/159/magic+gamma+telescope
+
+> **OpenML ID — verified programmatically (see [Dataset Provenance](#dataset-provenance-round-2) below):**
+> `sklearn.datasets.fetch_openml("magic", version=1)` resolves to **OpenML dataset id 40679**
+> (name `"magic"`, version 1) — not 566 as an earlier version of this README stated, and not
+> 1120 (`MagicTelescope`) either. Shape, class counts, and feature semantics all match the
+> canonical UCI MAGIC04 dataset exactly; this is a differently-numbered OpenML mirror of the
+> same data, not a different dataset.
 
 | Property | Value |
 |---|---|
@@ -152,9 +167,9 @@ The full kernel matrix is precomputed from quantum state overlaps and passed to 
 ## Project Structure
 
 ```
-quant/
+quantumML/
 │
-├── config.py               # All hyperparameters (qubits, layers, epochs, etc.)
+├── config.py               # Original hyperparameters (qubits, layers, epochs, etc.)
 ├── data_prep.py            # Dataset loading and preprocessing pipelines
 ├── quantum_circuits.py     # ZZ, Amplitude, and Angle+Custom QNodes
 ├── quantum_trainer.py      # VQC training loop (Adam, BCE loss, epoch logging)
@@ -164,25 +179,56 @@ quant/
 ├── scalability.py          # Qubit scalability experiment (n = 2 → 5)
 ├── analysis.py             # Circuit complexity, barren plateaus, fidelity, expressibility
 ├── plots.py                # All matplotlib figure generation
-├── run_experiments.py      # Main entry point — runs all 8 experimental stages
+├── run_experiments.py      # Original entry point — runs all 8 original experimental stages
 │
 ├── experiments.tex         # LaTeX experiments section (pgfplots figures, no external images)
 │
-├── figures/                # PNG figures from matplotlib (reference copies)
+├── rconfig.py               # Revision-package config (seeds, grids, output paths)
+├── utils.py                 # Shared helpers: seeding, resumable JSONL run stores, bootstrap CI
+├── circuits.py               # Refactored 3x3 feature-map x ansatz circuit builder
+├── train_core.py             # Generalized VQC training loop used by every revision stage
+├── metrics.py                 # Extended metrics (PR-AUC, balanced accuracy, confusion matrix)
+├── dataset_audit.py           # Section 1 — dataset audit
+├── dataset_provenance.py      # Round-2 — verified OpenML id + physics-based label check
+├── primary_split.py           # Section 2 — primary controlled 1,400/600 partition
+├── validate_circuits.py       # Section 4 — refactored-vs-original circuit equivalence check
+├── factorial.py                # Sections 5-8 — primary 3x3 factorial VQC experiment
+├── matched_budget.py           # Section 9 — matched 48-parameter-budget sensitivity
+├── matched_baselines.py        # Sections 10-11 — controlled classical + QK-SVM baselines
+├── separability.py             # Section 13 — feature-space separability
+├── expressibility.py           # Sections 14-15 — Haar-referenced expressibility
+├── barren_plateau.py           # Sections 16-18 — gradient-scaling sweep (round-2 corrected)
+├── split_robustness.py         # Section 19 — repeated-split robustness (round-2 rewrite)
+├── noise.py                    # Section 20 (optional) — depolarizing-noise robustness
+├── unified.py                   # Unified model-comparison table
+├── figures.py                   # Revision-package figure generation
+├── sanity.py                    # Section 25 — legacy internal-consistency checks
+├── validate_results.py          # Round-2 Phase 5 — full validation suite (14 checks)
+├── manifest.py                   # Section 22 — reproducibility manifest
+├── summary.py                    # Sections 26-27 — console summary + FINAL_RESULTS.json
+├── run_revision_experiments.py   # Revision-package entry point (--stage {...} [--resume])
+│
+├── figures/                 # PNG figures from matplotlib (reference copies)
 │   ├── training_convergence.png
 │   ├── feature_map_comparison.png
 │   ├── gradient_analysis.png
 │   ├── accuracy_comparison.png
 │   ├── scalability.png
 │   ├── expressibility.png
-│   └── full_metrics.png
+│   ├── full_metrics.png
+│   └── revision/            # All revision-package figures (generated, not committed)
 │
 ├── results/
-│   └── results.json        # Full numerical results from all experiments
+│   ├── results.json         # Original study's full numerical results
+│   └── revision/            # All revision-package results (generated, not committed —
+│                             #  see "Where Results Are Stored" below)
 │
 ├── requirements.txt
 └── .gitignore
 ```
+
+Every `revision`-era module lives flat at the repository root (not in a nested package) so it
+imports the same way the original modules do (`import rconfig`, `import split_robustness`, …).
 
 ---
 
@@ -374,6 +420,220 @@ All figures in `figures/` are generated by `plots.py` using matplotlib. The LaTe
 | `scalability.png` | Accuracy + parameter count vs qubit count |
 | `expressibility.png` | KL divergence bar chart + Haar reference curve |
 | `full_metrics.png` | Grouped acc/F1/precision/recall for all models |
+
+---
+
+## Journal-Revision Experimental Package (Rounds 1 & 2)
+
+Everything above describes the **original study** (single train/test partition, single
+seed per configuration, un-pooled gradient statistics). In response to peer review, two
+rounds of additional experimental work extend and correct that study without altering
+its underlying data or code:
+
+- **Round 1** (`primary_split.py`, `factorial.py`, `matched_budget.py`, `matched_baselines.py`,
+  `separability.py`, `expressibility.py`): a full 3×3 feature-map × ansatz factorial design
+  (fixing the original's confounded one-configuration-per-feature-map design), a
+  matched-parameter-budget (48-parameter) sensitivity check, and a matched preprocessing
+  protocol shared by VQC, QK-SVM, and classical baselines.
+- **Round 2** (`split_robustness.py`, `barren_plateau.py`, `dataset_provenance.py`,
+  `validate_results.py`): repeated train/test splits, full reproducibility artifacts,
+  a corrected gradient-scaling methodology, and verified dataset provenance — the four
+  items summarized below.
+
+Run via `python run_revision_experiments.py --stage all --resume` (see
+[Reproducing the Revision Experiments](#reproducing-the-revision-experiments)).
+
+### Dataset Provenance (Round 2)
+
+`fetch_openml("magic", version=1)` was independently verified rather than trusted:
+
+| Check | Result |
+|---|---|
+| Resolved OpenML id | **40679** (name `"magic"`, version 1) — not 566 (this README's earlier claim) or 1120 (`MagicTelescope`) |
+| Shape | 19,020 × 10 — matches UCI exactly |
+| Class counts | 12,332 / 6,688 — matches UCI exactly |
+| Missing values | 0 |
+
+**A separate, more consequential finding:** the integer class label does not mean what
+`data_prep.load_magic()`'s comment claims. Using `FAlpha` (the shower-axis angle to the
+origin — physically, gamma showers point back at the source and so have small `FAlpha`;
+hadron background is isotropic, larger `FAlpha`) as an independent check: class `0` has
+mean `FAlpha` ≈ 18.8°, class `1` ≈ 44.0°. **Class 0 is physically gamma; class 1 is
+physically hadron** — the opposite of the `"gamma=1, hadron=0"` assumption baked into the
+original, pre-revision `data_prep.py`. This affects the original study too, not just this
+revision. Accuracy / balanced accuracy / MCC are symmetric and unaffected; precision,
+recall, ROC-AUC, and PR-AUC are computed correctly with respect to whichever label is
+coded as 1, but any narrative describing those numbers as "gamma-detection performance"
+has been describing hadron-detection performance, and vice versa. **This has been left
+unchanged** (no relabeling, no reruns) pending a decision on the manuscript side — see
+[Known Scientific Limitations](#known-scientific-limitations). Full detail, including the
+raw counts and the `FAlpha` check, is in `results/revision/dataset_provenance.json`.
+
+### Repeated-Split Robustness (Round 2)
+
+The original revision's split-robustness experiment conflated two different sources of
+variability (which 2,000-sample subsample is drawn, and how it's partitioned) and omitted
+quantum-kernel SVMs entirely. This round separates and completes both:
+
+- **`fixed_subset` (primary):** the 2,000-sample subsample is drawn once; only the
+  stratified 1,400/600 **partition** varies across 5 seeds (`[42, 123, 456, 789, 2026]`).
+  Isolates partition identity as the sole source of variation.
+- **`varying_subset` (secondary/sensitivity):** both the subsample and the partition are
+  redrawn together per seed — the original design, retained for comparison.
+- **3 independent initialization seeds** per VQC/split combination (`[7001, 7002, 7003]`,
+  deliberately disjoint from the split seeds), aggregated within each split before any
+  split-level comparison.
+- **QK-SVM now included** in the repeated-split sweep (previously omitted) — 3 kernels × 5
+  splits, reusing the exact statevector-Gram implementation from the primary comparison.
+- **Full reproducibility artifacts** for every run: exact train/test indices, true labels,
+  predicted labels, prediction scores, confusion matrix, and every metric — not just
+  aggregate statistics. Validated: train/test disjointness, matched partitions across
+  model families for a given split, confusion-matrix totals, and that saved predictions
+  reproduce the saved metrics (see [`validate_results.py`](validate_results.py)).
+
+Fixed-subset results (mean ± SD across 5 splits, VQC/QK-SVM additionally averaged over 3
+init seeds per split first):
+
+| Method | Accuracy | F1 |
+|---|---|---|
+| SVM (RBF) | 0.782 ± 0.022 | 0.637 ± 0.045 |
+| Random Forest | 0.777 ± 0.019 | 0.659 ± 0.031 |
+| **Angle + CustomAnsatz (VQC)** | **0.758 ± 0.017** | **0.587 ± 0.039** |
+| QK-SVM (Angle) | 0.769 ± 0.019 | 0.614 ± 0.035 |
+| Angle + StronglyEnt (VQC) | 0.717 ± 0.006 | 0.531 ± 0.018 |
+| Angle + BasicEnt (VQC) | 0.689 ± 0.024 | 0.325 ± 0.076 |
+
+The original study's headline finding — Angle+CustomAnsatz as the best VQC configuration,
+trailing but not far behind the best classical/QK-SVM baselines — **remains supported**
+under repeated-split evaluation (0.758 here vs. 0.767 on the original single partition).
+With only 5 partitions, paired split-level comparisons
+(`results/revision/split_robustness/paired_comparisons.csv`) are reported descriptively
+(mean difference + bootstrap 95% CI), not as significance claims.
+
+### Corrected Gradient-Scaling Methodology (Round 2)
+
+The original barren-plateau sweep's headline statistic pooled gradient entries across
+*both* random initializations *and* parameter identity into one number — not an adequate
+primary diagnostic, since it can't distinguish "every parameter has a small gradient" from
+"a few parameters dominate while most don't vary." This round's correction:
+
+- **Primary statistic:** for every trainable parameter *p*, `V_p = Var_i(g[i, p])` across
+  the `n_init=100` random initializations; `mean_of_per_param_variances` (and median, as a
+  robustness companion) replaces the old pooled variance as the primary scaling statistic.
+  The old pooled statistic is retained only as an explicitly-labeled secondary comparison.
+- **Deterministic seeding:** cell seeds are now derived via `hashlib.sha256`, not Python's
+  built-in `hash()` (salted per-process by default — not reproducible run-to-run for a
+  seed built from a string). Verified via an automatic determinism spot-check on every run
+  (`results/revision/barren_plateau/determinism_check.json`).
+- **Bootstrap 95% CIs** (2,000 replicates) on every scaling-regression slope, resampling
+  complete per-initialization gradient vectors within each grid cell — never resampling
+  individual gradient entries as if independent.
+- **Sensitivity analyses:** parameter-selection (mean / median / single-representative-
+  parameter / pooled-legacy, compared side by side) and leave-one-qubit-count-out refits.
+
+Headline qubit-scaling and depth-scaling slopes (`log10(mean per-parameter variance)` vs.
+grid axis, bootstrap 95% CI in brackets):
+
+| Ansatz | vs. qubits | vs. depth |
+|---|---|---|
+| StronglyEnt | −0.312 [−0.318, −0.306] — suppression | +0.019 [+0.013, +0.025] — no suppression |
+| BasicEnt | −0.325 [−0.332, −0.318] — suppression | −0.035 [−0.043, −0.028] — suppression |
+| CustomAnsatz | −0.293 [−0.298, −0.288] — suppression | +0.048 [+0.042, +0.055] — no suppression |
+
+All three ansätze show gradient-variance suppression with increasing qubit count over the
+tested range (2–8 qubits); only BasicEnt shows suppression with increasing depth (1–6
+layers) — StronglyEnt and CustomAnsatz show a small *positive* depth slope instead. The
+parameter-selection sensitivity analysis found a striking case for StronglyEnt: the
+single-representative-parameter diagnostic (the classic McClean et al. 2018 statistic,
+one arbitrarily-chosen parameter) gives slope ≈ −0.04 (R² ≈ 0.03, essentially no
+detectable trend), while the per-parameter-averaged statistic gives slope ≈ −0.31
+(R² ≈ 0.997) — a single arbitrarily-chosen parameter can be highly unrepresentative for a
+structured ansatz like `StronglyEntanglingLayers`, which is exactly the failure mode the
+per-parameter correction is meant to catch. **These are small simulated circuits (≤8
+qubits) with a local observable; this is evidence of finite-size gradient suppression over
+the tested range, not a demonstration of asymptotic barren-plateau scaling**, which would
+require evidence at qubit counts far beyond what classical simulation can reach. Full
+per-ansatz, per-axis fits, CIs, and sensitivity tables:
+`results/revision/barren_plateau/scaling_fits.json`.
+
+### Reproducing the Revision Experiments
+
+```bash
+pip install -r requirements.txt
+
+# everything (original revision stages + round-2 corrections), resumable:
+python run_revision_experiments.py --stage all --resume --skip-noise
+
+# an individual stage, e.g. just the round-2 repeated-split experiment:
+python run_revision_experiments.py --stage split-robustness --resume
+
+# round-2 dataset provenance check and full validation suite, standalone:
+python dataset_provenance.py
+python validate_results.py
+```
+
+Every stage is resumable (`--resume`): completed runs are tracked in append-only JSONL
+"run store" files and skipped on a subsequent invocation; only runs that genuinely failed
+are retried (a run recorded with `status: "failed"` is never counted as done).
+
+**If running VQC training stages under `multiprocessing`:** the entry-point script must
+guard its top-level code with `if __name__ == "__main__":`. `run_revision_experiments.py`
+already does this; a custom launcher script that doesn't will see every worker process
+crash or silently re-execute the parent's top-level code under the `spawn` start method
+these stages use (`factorial.py`, `split_robustness.py`) — this was a real, time-consuming
+bug encountered while running this exact round-2 package and is recorded here so it isn't
+rediscovered.
+
+### Where Results Are Stored
+
+| What | Path |
+|---|---|
+| Dataset audit / provenance | `results/revision/dataset_audit.json`, `results/revision/dataset_provenance.json` |
+| Primary factorial (3×3) | `results/revision/factorial/` |
+| Matched parameter-budget | `results/revision/matched_budget/` |
+| Classical + QK-SVM baselines (primary partition) | `results/revision/matched_baselines/` |
+| Separability / expressibility | `results/revision/separability/`, `results/revision/expressibility/` |
+| Gradient-scaling sweep (round-2 corrected) | `results/revision/barren_plateau/` |
+| Repeated-split robustness (round-2) | `results/revision/split_robustness/{fixed_subset,varying_subset}/` |
+| Validation report | `results/revision/validation_report.json` |
+| Reproducibility manifest | `results/revision/revision_manifest.json` |
+| Full machine-readable snapshot | `results/revision/FINAL_RESULTS.json` |
+| Final reviewer-response package | `results/revision/final_review_results/` (see `SUMMARY.md` there) |
+| Figures | `figures/revision/` |
+
+None of `results/revision/` or `figures/revision/` is committed to this repository (see
+`.gitignore`) — they're regenerated by running the stages above, except for the small,
+curated `final_review_results/` summary package, which is committed.
+
+### Computational Requirements
+
+The round-1 + round-2 revision package was run on a 48-core / 188 GB RAM machine (CPU
+only — nothing in this codebase uses a GPU tensor); the full `--stage all --resume` run
+completes in well under 15 minutes on that hardware. A single-digit-core machine will take
+proportionally longer but is not expected to need more than a few hours; every stage is
+resumable, so an interrupted run loses no completed work.
+
+### Known Scientific Limitations
+
+- **Gamma/hadron label semantics** (see [Dataset Provenance](#dataset-provenance-round-2)):
+  the integer class label's gamma/hadron naming is inverted relative to the physical
+  class, in both the original study and this revision. The underlying numbers are valid
+  self-consistent binary-classification results; any narrative framing them as
+  "gamma-detection" vs. "hadron-detection" performance has the two swapped. Left
+  unchanged in code pending a decision on the manuscript side.
+- **OpenML dataset version inactive:** `fetch_openml` prints a deprecation-style warning
+  that OpenML version 1 of this dataset has been marked inactive ("issues have been
+  found") with a newer version suggested. Data shape/content were independently verified
+  against the authoritative UCI source regardless (see above); the warning has not been
+  investigated further.
+- **Small simulated circuits:** the gradient-scaling results (≤8 qubits, local observable)
+  support finite-size gradient suppression conclusions only, not asymptotic barren-plateau
+  scaling claims — see [Corrected Gradient-Scaling Methodology](#corrected-gradient-scaling-methodology-round-2).
+- **n=5 partitions:** repeated-split paired comparisons are reported descriptively
+  (mean difference + bootstrap CI) and should not be read as hypothesis-test significance
+  claims, given the small number of independent partitions.
+- **Noise-robustness stage is optional and was not run** in this round (`--skip-noise`);
+  `noise.py` exists and is runnable independently if needed.
 
 ---
 

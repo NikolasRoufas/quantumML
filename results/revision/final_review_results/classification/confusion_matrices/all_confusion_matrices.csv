@@ -1,0 +1,166 @@
+method_type,method_name,split_seed,init_seed,confusion_matrix,n_test
+VQC,Amplitude+BasicEnt,123,7001.0,"[[378, 9], [191, 22]]",600
+VQC,Angle+BasicEnt,42,7003.0,"[[362, 25], [156, 57]]",600
+VQC,Angle+StronglyEnt,123,7001.0,"[[345, 42], [121, 92]]",600
+VQC,Amplitude+BasicEnt,123,7002.0,"[[370, 17], [193, 20]]",600
+VQC,Angle+BasicEnt,123,7001.0,"[[371, 16], [166, 47]]",600
+VQC,Amplitude+BasicEnt,456,7003.0,"[[376, 11], [186, 27]]",600
+VQC,Angle+StronglyEnt,123,7002.0,"[[344, 43], [125, 88]]",600
+VQC,Amplitude+BasicEnt,42,7002.0,"[[355, 32], [176, 37]]",600
+VQC,Amplitude+BasicEnt,456,7001.0,"[[359, 28], [177, 36]]",600
+VQC,Angle+BasicEnt,123,7002.0,"[[379, 8], [179, 34]]",600
+VQC,ZZ+BasicEnt,123,7001.0,"[[263, 124], [115, 98]]",600
+VQC,ZZ+BasicEnt,123,7003.0,"[[228, 159], [125, 88]]",600
+VQC,Angle+StronglyEnt,42,7003.0,"[[322, 65], [107, 106]]",600
+VQC,Angle+StronglyEnt,42,7002.0,"[[320, 67], [110, 103]]",600
+VQC,Amplitude+StronglyEnt,123,7003.0,"[[271, 116], [115, 98]]",600
+VQC,Angle+StronglyEnt,123,7003.0,"[[341, 46], [123, 90]]",600
+VQC,ZZ+BasicEnt,123,7002.0,"[[266, 121], [120, 93]]",600
+VQC,Amplitude+StronglyEnt,456,7001.0,"[[260, 127], [112, 101]]",600
+VQC,Amplitude+CustomAnsatz,123,7002.0,"[[373, 14], [198, 15]]",600
+VQC,ZZ+StronglyEnt,42,7001.0,"[[224, 163], [124, 89]]",600
+VQC,Amplitude+StronglyEnt,123,7001.0,"[[270, 117], [117, 96]]",600
+VQC,ZZ+BasicEnt,456,7001.0,"[[272, 115], [132, 81]]",600
+VQC,Angle+BasicEnt,42,7002.0,"[[373, 14], [180, 33]]",600
+VQC,Amplitude+StronglyEnt,123,7002.0,"[[273, 114], [118, 95]]",600
+VQC,Amplitude+BasicEnt,123,7003.0,"[[374, 13], [197, 16]]",600
+VQC,Amplitude+BasicEnt,42,7001.0,"[[369, 18], [182, 31]]",600
+VQC,Amplitude+StronglyEnt,42,7003.0,"[[255, 132], [113, 100]]",600
+VQC,Amplitude+StronglyEnt,456,7002.0,"[[254, 133], [110, 103]]",600
+VQC,ZZ+BasicEnt,42,7002.0,"[[264, 123], [116, 97]]",600
+VQC,Angle+StronglyEnt,42,7001.0,"[[320, 67], [104, 109]]",600
+VQC,ZZ+StronglyEnt,456,7003.0,"[[222, 165], [104, 109]]",600
+VQC,ZZ+StronglyEnt,123,7002.0,"[[233, 154], [132, 81]]",600
+VQC,Angle+BasicEnt,42,7001.0,"[[362, 25], [157, 56]]",600
+VQC,Amplitude+StronglyEnt,456,7003.0,"[[256, 131], [115, 98]]",600
+VQC,ZZ+BasicEnt,42,7001.0,"[[257, 130], [133, 80]]",600
+VQC,Angle+CustomAnsatz,42,7003.0,"[[360, 27], [110, 103]]",600
+VQC,ZZ+StronglyEnt,123,7003.0,"[[236, 151], [131, 82]]",600
+VQC,ZZ+StronglyEnt,42,7003.0,"[[220, 167], [123, 90]]",600
+VQC,ZZ+BasicEnt,456,7002.0,"[[262, 125], [133, 80]]",600
+VQC,ZZ+BasicEnt,456,7003.0,"[[258, 129], [123, 90]]",600
+VQC,ZZ+CustomAnsatz,123,7001.0,"[[269, 118], [124, 89]]",600
+VQC,Amplitude+CustomAnsatz,42,7002.0,"[[361, 26], [184, 29]]",600
+VQC,Amplitude+CustomAnsatz,42,7001.0,"[[352, 35], [181, 32]]",600
+VQC,ZZ+CustomAnsatz,123,7002.0,"[[262, 125], [133, 80]]",600
+VQC,Amplitude+CustomAnsatz,456,7001.0,"[[374, 13], [184, 29]]",600
+VQC,ZZ+StronglyEnt,123,7001.0,"[[230, 157], [132, 81]]",600
+VQC,Angle+CustomAnsatz,123,7001.0,"[[358, 29], [118, 95]]",600
+VQC,ZZ+CustomAnsatz,42,7001.0,"[[268, 119], [119, 94]]",600
+VQC,Amplitude+CustomAnsatz,42,7003.0,"[[371, 16], [188, 25]]",600
+VQC,ZZ+CustomAnsatz,456,7002.0,"[[286, 101], [136, 77]]",600
+VQC,Amplitude+CustomAnsatz,456,7003.0,"[[381, 6], [193, 20]]",600
+VQC,Angle+CustomAnsatz,42,7002.0,"[[360, 27], [112, 101]]",600
+VQC,Amplitude+CustomAnsatz,123,7003.0,"[[353, 34], [171, 42]]",600
+VQC,ZZ+CustomAnsatz,42,7002.0,"[[259, 128], [129, 84]]",600
+VQC,ZZ+CustomAnsatz,123,7003.0,"[[263, 124], [135, 78]]",600
+VQC,ZZ+CustomAnsatz,456,7001.0,"[[257, 130], [116, 97]]",600
+VQC,ZZ+CustomAnsatz,42,7003.0,"[[295, 92], [139, 74]]",600
+VQC,Amplitude+CustomAnsatz,123,7001.0,"[[367, 20], [187, 26]]",600
+VQC,Amplitude+CustomAnsatz,456,7002.0,"[[386, 1], [195, 18]]",600
+VQC,ZZ+CustomAnsatz,456,7003.0,"[[277, 110], [123, 90]]",600
+VQC,Amplitude+BasicEnt,2026,7003.0,"[[371, 16], [176, 37]]",600
+VQC,Angle+BasicEnt,456,7003.0,"[[365, 22], [156, 57]]",600
+VQC,Amplitude+StronglyEnt,789,7001.0,"[[267, 120], [114, 99]]",600
+VQC,Angle+BasicEnt,789,7003.0,"[[348, 39], [190, 23]]",600
+VQC,Amplitude+StronglyEnt,42,7002.0,"[[254, 133], [115, 98]]",600
+VQC,Amplitude+BasicEnt,456,7002.0,"[[381, 6], [194, 19]]",600
+VQC,Angle+StronglyEnt,789,7002.0,"[[343, 44], [123, 90]]",600
+VQC,Angle+BasicEnt,2026,7003.0,"[[373, 14], [163, 50]]",600
+VQC,Angle+BasicEnt,789,7001.0,"[[374, 13], [187, 26]]",600
+VQC,ZZ+StronglyEnt,789,7003.0,"[[251, 136], [128, 85]]",600
+VQC,Amplitude+BasicEnt,42,7003.0,"[[364, 23], [180, 33]]",600
+VQC,Amplitude+BasicEnt,2026,7001.0,"[[373, 14], [177, 36]]",600
+VQC,Amplitude+BasicEnt,789,7002.0,"[[365, 22], [197, 16]]",600
+VQC,Amplitude+BasicEnt,789,7001.0,"[[378, 9], [183, 30]]",600
+VQC,Amplitude+BasicEnt,2026,7002.0,"[[375, 12], [178, 35]]",600
+VQC,Amplitude+BasicEnt,789,7003.0,"[[361, 26], [191, 22]]",600
+VQC,Angle+StronglyEnt,456,7003.0,"[[329, 58], [111, 102]]",600
+VQC,ZZ+BasicEnt,789,7001.0,"[[246, 141], [129, 84]]",600
+VQC,Angle+StronglyEnt,789,7001.0,"[[337, 50], [116, 97]]",600
+VQC,Angle+CustomAnsatz,789,7003.0,"[[363, 24], [120, 93]]",600
+VQC,Amplitude+StronglyEnt,2026,7001.0,"[[285, 102], [121, 92]]",600
+VQC,Angle+StronglyEnt,456,7002.0,"[[332, 55], [113, 100]]",600
+VQC,Angle+BasicEnt,123,7003.0,"[[372, 15], [168, 45]]",600
+VQC,Amplitude+StronglyEnt,789,7002.0,"[[267, 120], [117, 96]]",600
+VQC,Angle+BasicEnt,456,7001.0,"[[361, 26], [152, 61]]",600
+VQC,Angle+StronglyEnt,2026,7003.0,"[[330, 57], [118, 95]]",600
+VQC,Angle+BasicEnt,456,7002.0,"[[368, 19], [159, 54]]",600
+VQC,ZZ+BasicEnt,2026,7002.0,"[[249, 138], [123, 90]]",600
+VQC,ZZ+BasicEnt,789,7002.0,"[[247, 140], [126, 87]]",600
+VQC,Angle+BasicEnt,789,7002.0,"[[365, 22], [180, 33]]",600
+VQC,Amplitude+StronglyEnt,2026,7002.0,"[[280, 107], [111, 102]]",600
+VQC,ZZ+BasicEnt,789,7003.0,"[[263, 124], [119, 94]]",600
+VQC,ZZ+StronglyEnt,789,7002.0,"[[252, 135], [127, 86]]",600
+VQC,ZZ+StronglyEnt,2026,7002.0,"[[223, 164], [118, 95]]",600
+VQC,ZZ+BasicEnt,2026,7001.0,"[[242, 145], [126, 87]]",600
+VQC,Angle+CustomAnsatz,456,7003.0,"[[337, 50], [86, 127]]",600
+VQC,Amplitude+CustomAnsatz,789,7002.0,"[[369, 18], [171, 42]]",600
+VQC,Angle+StronglyEnt,456,7001.0,"[[327, 60], [110, 103]]",600
+VQC,ZZ+StronglyEnt,2026,7003.0,"[[222, 165], [116, 97]]",600
+VQC,ZZ+StronglyEnt,2026,7001.0,"[[225, 162], [111, 102]]",600
+VQC,Angle+StronglyEnt,2026,7001.0,"[[336, 51], [119, 94]]",600
+VQC,Amplitude+CustomAnsatz,2026,7002.0,"[[385, 2], [212, 1]]",600
+VQC,ZZ+StronglyEnt,42,7002.0,"[[239, 148], [128, 85]]",600
+VQC,ZZ+StronglyEnt,456,7002.0,"[[242, 145], [114, 99]]",600
+VQC,Angle+CustomAnsatz,789,7001.0,"[[362, 25], [115, 98]]",600
+VQC,Angle+CustomAnsatz,456,7002.0,"[[361, 26], [102, 111]]",600
+VQC,Amplitude+CustomAnsatz,789,7001.0,"[[370, 17], [175, 38]]",600
+VQC,ZZ+CustomAnsatz,789,7003.0,"[[253, 134], [126, 87]]",600
+VQC,Amplitude+CustomAnsatz,2026,7001.0,"[[378, 9], [190, 23]]",600
+VQC,Angle+CustomAnsatz,123,7003.0,"[[333, 54], [103, 110]]",600
+VQC,ZZ+CustomAnsatz,789,7002.0,"[[283, 104], [127, 86]]",600
+VQC,Angle+CustomAnsatz,42,7001.0,"[[339, 48], [112, 101]]",600
+VQC,Angle+CustomAnsatz,456,7001.0,"[[341, 46], [94, 119]]",600
+VQC,ZZ+CustomAnsatz,789,7001.0,"[[263, 124], [133, 80]]",600
+VQC,Angle+CustomAnsatz,123,7002.0,"[[350, 37], [107, 106]]",600
+VQC,Angle+CustomAnsatz,789,7002.0,"[[354, 33], [108, 105]]",600
+VQC,Amplitude+CustomAnsatz,789,7003.0,"[[377, 10], [186, 27]]",600
+VQC,ZZ+CustomAnsatz,2026,7003.0,"[[284, 103], [139, 74]]",600
+VQC,ZZ+CustomAnsatz,2026,7002.0,"[[267, 120], [119, 94]]",600
+VQC,ZZ+CustomAnsatz,2026,7001.0,"[[273, 114], [137, 76]]",600
+VQC,Angle+BasicEnt,2026,7002.0,"[[373, 14], [161, 52]]",600
+VQC,Amplitude+StronglyEnt,789,7003.0,"[[264, 123], [114, 99]]",600
+VQC,Angle+BasicEnt,2026,7001.0,"[[371, 16], [159, 54]]",600
+VQC,Amplitude+StronglyEnt,2026,7003.0,"[[286, 101], [111, 102]]",600
+VQC,Amplitude+StronglyEnt,42,7001.0,"[[258, 129], [114, 99]]",600
+VQC,Angle+StronglyEnt,2026,7002.0,"[[340, 47], [120, 93]]",600
+VQC,Angle+StronglyEnt,789,7003.0,"[[341, 46], [128, 85]]",600
+VQC,ZZ+BasicEnt,2026,7003.0,"[[242, 145], [126, 87]]",600
+VQC,ZZ+BasicEnt,42,7003.0,"[[257, 130], [129, 84]]",600
+VQC,ZZ+StronglyEnt,789,7001.0,"[[253, 134], [130, 83]]",600
+VQC,ZZ+StronglyEnt,456,7001.0,"[[224, 163], [111, 102]]",600
+VQC,Amplitude+CustomAnsatz,2026,7003.0,"[[364, 23], [176, 37]]",600
+VQC,Angle+CustomAnsatz,2026,7003.0,"[[347, 40], [100, 113]]",600
+VQC,Angle+CustomAnsatz,2026,7002.0,"[[362, 25], [130, 83]]",600
+VQC,Angle+CustomAnsatz,2026,7001.0,"[[343, 44], [123, 90]]",600
+Classical,SVM (RBF),42,,"[[358, 29], [87, 126]]",600
+Classical,Random Forest,42,,"[[344, 43], [81, 132]]",600
+Classical,Neural Network,42,,"[[324, 63], [82, 131]]",600
+Classical,SVM (RBF),123,,"[[350, 37], [101, 112]]",600
+Classical,Random Forest,123,,"[[341, 46], [86, 127]]",600
+Classical,Neural Network,123,,"[[335, 52], [86, 127]]",600
+Classical,SVM (RBF),456,,"[[358, 29], [95, 118]]",600
+Classical,Random Forest,456,,"[[339, 48], [76, 137]]",600
+Classical,Neural Network,456,,"[[331, 56], [84, 129]]",600
+Classical,SVM (RBF),789,,"[[354, 33], [92, 121]]",600
+Classical,Random Forest,789,,"[[326, 61], [78, 135]]",600
+Classical,Neural Network,789,,"[[318, 69], [76, 137]]",600
+Classical,SVM (RBF),2026,,"[[351, 36], [114, 99]]",600
+Classical,Random Forest,2026,,"[[331, 56], [95, 118]]",600
+Classical,Neural Network,2026,,"[[348, 39], [104, 109]]",600
+QK-SVM,ZZ kernel,42,,"[[362, 25], [183, 30]]",600
+QK-SVM,Amplitude kernel,42,,"[[387, 0], [213, 0]]",600
+QK-SVM,Angle kernel,42,,"[[359, 28], [99, 114]]",600
+QK-SVM,ZZ kernel,123,,"[[333, 54], [166, 47]]",600
+QK-SVM,Amplitude kernel,123,,"[[387, 0], [213, 0]]",600
+QK-SVM,Angle kernel,123,,"[[352, 35], [105, 108]]",600
+QK-SVM,ZZ kernel,456,,"[[350, 37], [174, 39]]",600
+QK-SVM,Amplitude kernel,456,,"[[387, 0], [213, 0]]",600
+QK-SVM,Angle kernel,456,,"[[355, 32], [98, 115]]",600
+QK-SVM,ZZ kernel,789,,"[[354, 33], [181, 32]]",600
+QK-SVM,Amplitude kernel,789,,"[[387, 0], [213, 0]]",600
+QK-SVM,Angle kernel,789,,"[[342, 45], [95, 118]]",600
+QK-SVM,ZZ kernel,2026,,"[[360, 27], [185, 28]]",600
+QK-SVM,Amplitude kernel,2026,,"[[387, 0], [213, 0]]",600
+QK-SVM,Angle kernel,2026,,"[[346, 41], [115, 98]]",600

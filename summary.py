@@ -77,19 +77,25 @@ def print_final_summary():
     else:
         print("  (not available)")
 
-    print("\nI. BARREN-PLATEAU SCALING SUMMARY")
+    print("\nI. BARREN-PLATEAU SCALING SUMMARY (round-2: per-parameter variance, bootstrap CI)")
     fits = utils.load_json(os.path.join(rconfig.DIRS["barren_plateau"], "scaling_fits.json"))
     if fits:
         for ansatz, v in fits.items():
+            if ansatz.startswith("_") or not isinstance(v, dict):
+                continue  # skip the "_methodology_note" metadata entry
             hn = v.get("headline_vs_qubits")
             hd = v.get("headline_vs_depth")
             print(f"  {ansatz}:")
             if hn:
-                print(f"    vs qubits: slope={hn['slope_log10var_per_qubit']:.4f} r2={hn['r_squared']:.3f} "
-                      f"-> {hn['evidence_classification']}")
+                label = hn.get("evidence_classification", {}).get("label", hn.get("evidence_classification"))
+                print(f"    vs qubits: slope={hn['slope_point_estimate']:.4f} "
+                      f"CI95=[{hn['slope_ci95_lo']:.4f},{hn['slope_ci95_hi']:.4f}] r2={hn['r_squared']:.3f} "
+                      f"-> {label}")
             if hd:
-                print(f"    vs depth:  slope={hd['slope_log10var_per_depth']:.4f} r2={hd['r_squared']:.3f} "
-                      f"-> {hd['evidence_classification']}")
+                label = hd.get("evidence_classification", {}).get("label", hd.get("evidence_classification"))
+                print(f"    vs depth:  slope={hd['slope_point_estimate']:.4f} "
+                      f"CI95=[{hd['slope_ci95_lo']:.4f},{hd['slope_ci95_hi']:.4f}] r2={hd['r_squared']:.3f} "
+                      f"-> {label}")
     else:
         print("  (not available)")
 

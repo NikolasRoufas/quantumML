@@ -1,0 +1,29 @@
+{
+  "all_passed": true,
+  "checks": [
+    {
+      "n_qubits": 2,
+      "depth": 1,
+      "ansatz": "StronglyEnt",
+      "seed": 1599053415,
+      "max_abs_diff": 0.0,
+      "exact_match": true
+    },
+    {
+      "n_qubits": 2,
+      "depth": 1,
+      "ansatz": "BasicEnt",
+      "seed": 220262532,
+      "max_abs_diff": 0.0,
+      "exact_match": true
+    },
+    {
+      "n_qubits": 2,
+      "depth": 1,
+      "ansatz": "CustomAnsatz",
+      "seed": 505337480,
+      "max_abs_diff": 0.0,
+      "exact_match": true
+    }
+  ]
+}

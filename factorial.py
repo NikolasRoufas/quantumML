@@ -16,6 +16,19 @@ import rconfig, utils, train_core
 def _worker(args):
     (feature_map, ansatz, seed, n_qubits, n_layers,
      X_tr, y_tr, X_te, y_te, lr, batch_size, n_epochs) = args
+    # Force CUDA fully out of reach before torch is even imported: this
+    # codebase never uses a GPU tensor, but a CUDA-enabled torch build still
+    # registers an NVIDIA MPS client on the very first CUDA API call made in
+    # a process — even a read-only query like torch.cuda.is_available(),
+    # which something in the stack (observed: enough of the time to matter
+    # once worker-pool size climbs past a few dozen) ends up calling. With
+    # dozens of concurrent worker processes that exhausts the host's MPS
+    # client limit (CUDA_ERROR_MPS_MAX_CLIENTS_REACHED). Clearing
+    # CUDA_VISIBLE_DEVICES makes is_available() return False immediately,
+    # with no driver/MPS daemon round-trip at all, regardless of what any
+    # library incidentally probes.
+    import os as _os
+    _os.environ["CUDA_VISIBLE_DEVICES"] = ""
     import torch
     torch.set_num_threads(1)  # avoid BLAS oversubscription across parallel workers
     t0 = time.time()
@@ -41,6 +54,7 @@ def run_factorial(split, resume=False, max_workers=None, seeds=None,
     """Section 5: run every (feature_map, ansatz, seed) VQC configuration on
     the fixed primary partition. Parallelized across independent runs (same
     math, no protocol change — Section 24)."""
+    import multiprocessing
     from concurrent.futures import ProcessPoolExecutor, as_completed
 
     out_dir = os.path.join(rconfig.RESULTS_DIR, out_subdir)
@@ -76,7 +90,19 @@ def run_factorial(split, resume=False, max_workers=None, seeds=None,
     n_completed = 0
     if job_args:
         print(f"  Launching {len(job_args)} runs across {max_workers} worker processes...")
-        with ProcessPoolExecutor(max_workers=max_workers) as ex:
+        # mp_context="spawn": the default fork() start method on Linux copies
+        # the parent's already-initialized state into every worker, and once
+        # anything earlier in the same process (e.g. the validate-circuits
+        # stage) has touched torch's autograd engine, forking afterward makes
+        # every child fail with "Unable to handle autograd's threading in
+        # combination with fork-based multiprocessing" the instant it calls
+        # .backward(). spawn starts each worker as a genuinely fresh
+        # interpreter, sidestepping this regardless of what ran earlier in
+        # the parent process (observed: 45/45 runs failed under fork when
+        # this stage ran after validate-circuits in the same `--stage all`
+        # process; 0 failed in isolation as its own script).
+        with ProcessPoolExecutor(max_workers=max_workers,
+                                  mp_context=multiprocessing.get_context("spawn")) as ex:
             futures = {ex.submit(_worker, a): (a[0], a[1], a[2]) for a in job_args}
             for fut in as_completed(futures):
                 key = futures[fut]

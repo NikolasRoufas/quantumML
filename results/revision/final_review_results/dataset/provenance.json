@@ -1,0 +1,62 @@
+{
+  "fetch_call": "sklearn.datasets.fetch_openml('magic', version=1, as_frame=False, parser='auto')",
+  "resolved_openml_id": "40679",
+  "resolved_openml_name": "magic",
+  "resolved_openml_version": "1",
+  "resolved_openml_url": "https://openml.org/data/v1/download/4965256/magic.arff",
+  "readme_claimed_id": 566,
+  "reviewer_candidate_id": 1120,
+  "id_matches_readme_claim": false,
+  "id_matches_reviewer_candidate": false,
+  "n_samples": 19020,
+  "n_features": 10,
+  "expected_n_samples_uci": 19020,
+  "expected_n_features_uci": 10,
+  "shape_matches_uci_expectation": true,
+  "feature_names": [
+    "FLength",
+    "FWidth",
+    "FSize",
+    "FConc",
+    "FConc1",
+    "FAsym",
+    "FM3Long",
+    "FM3Trans",
+    "FAlpha",
+    "FDist"
+  ],
+  "raw_target_categories": [
+    "0",
+    "1"
+  ],
+  "class_counts_after_encoding": {
+    "0": 12332,
+    "1": 6688
+  },
+  "positive_class_encoding": "1 = gamma (signal), 0 = hadron (background) \u2014 matches UCI 'MAGIC Gamma Telescope' (g=gamma, h=hadron) and data_prep.load_magic's int(y) encoding where the OpenML nominal category 'g'/'1' maps to 1",
+  "n_missing_values": 0,
+  "label_semantics_check": {
+    "0": {
+      "n": 12332,
+      "mean_falpha_degrees": 18.784309219915666,
+      "median_falpha_degrees": 9.70815
+    },
+    "1": {
+      "n": 6688,
+      "mean_falpha_degrees": 43.98523320873206,
+      "median_falpha_degrees": 43.3829
+    },
+    "falpha_column_used": "FAlpha",
+    "physics_based_gamma_label": 0,
+    "physics_based_hadron_label": 1,
+    "interpretation": "Gamma showers point back toward the source -> small FAlpha; class 0 has the smaller mean FAlpha (18.78 deg vs 43.99 deg), so class 0 is physically gamma and class 1 is physically hadron, independent of count-matching against the UCI summary stats.",
+    "assumed_by_data_prep_load_magic": "comment states 'gamma=1, hadron=0' \u2014 i.e. assumes class 1 is gamma",
+    "assumption_matches_physics_check": false
+  },
+  "sha256_checksum_X_and_class_counts": "5096cfbe5af25d9c2160665e8b5de8918752a32919fc5b5824de6f97775db1cc",
+  "compare_against": [
+    "https://www.openml.org/d/1120",
+    "https://archive.ics.uci.edu/dataset/159/magic+gamma+telescope"
+  ],
+  "conclusion": "Resolved OpenML id 40679 ('magic') matches NEITHER candidate id but the data shape matches UCI MAGIC Gamma Telescope exactly (19020x10) and class semantics are consistent. Likely a re-hosted/mirrored copy under a different OpenML id with identical content \u2014 treat prior experimental results as valid on data-content grounds, but correct the README to cite the id actually resolved here. **SEPARATE, MORE CONSEQUENTIAL FINDING**: the physics-based label check (FAlpha angle-to-origin) indicates class 0 is physically gamma and class 1 is physically hadron \u2014 the OPPOSITE of what data_prep.load_magic()'s docstring/comment assumes ('gamma=1, hadron=0'). The dataset CONTENT is correct and unchanged; what is wrong is the gamma/hadron NAMING of integer label 1 vs 0, which was already baked into the ORIGINAL (pre-revision) data_prep.py and therefore affects the original paper's results too, not just this revision. Accuracy/balanced-accuracy/MCC are symmetric and unaffected; precision/recall/ROC-AUC/PR-AUC are computed correctly with respect to whichever class is coded as 1, but every place the paper or README narrates those numbers as being 'for gamma-ray detection' has actually been describing hadron-background detection, and vice versa. This is a labeling/narrative inversion, not a numerical error, but it needs a human decision before any text is written \u2014 flagged to the user rather than silently corrected."
+}

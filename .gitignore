@@ -29,3 +29,19 @@ env/
 *.fdb_latexmk
 *.synctex.gz
 *.pdf
+!results/revision/final_review_results/**/*.pdf
+
+# Journal-revision package: generated results/figures are large and
+# regenerable (run run_revision_experiments.py --stage all --resume) — not
+# committed, except the small curated final-review summary package.
+# (The "/*" form, not "results/revision/", is required so git still
+# descends far enough to apply the "!final_review_results/" negation below —
+# a plain directory-exclude prevents traversal entirely and negation inside
+# it would be silently ignored.)
+results/revision/*
+!results/revision/final_review_results/
+figures/revision/
+*.npy
+*.npz
+!results/revision/final_review_results/**/*.npy
+!results/revision/final_review_results/**/*.npz
